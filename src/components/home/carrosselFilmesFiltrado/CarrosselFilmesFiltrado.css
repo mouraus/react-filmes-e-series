@@ -1,0 +1,13 @@
+.filtroDisable{
+    color: grey !important;
+}
+
+.categoria{
+    cursor: pointer;
+    transition: all ease 0.2s;
+    font-weight: 100 !important;
+}
+
+.categoria:hover{
+    transform: scale(1.1);
+}

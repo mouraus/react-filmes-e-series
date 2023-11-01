@@ -1,0 +1,13 @@
+
+.movieRow__item {
+    display: inline-block;
+    width: 150px;
+    height: 225px;
+    transform: scale(0.9);
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+.movieRow__item:hover {
+    transform: scale(1);
+}

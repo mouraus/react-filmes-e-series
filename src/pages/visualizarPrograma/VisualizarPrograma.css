@@ -1,0 +1,40 @@
+.cardArea{
+    gap: 35px;
+}
+
+.carregandoCardArea{
+    display: flex;
+    gap: 10px;
+}
+
+.trailerArea{
+    width: 40%;
+}
+.programaAno, .averageInfoArea{
+    font-size: 14px;
+}
+.categoriaProgramaArea{
+    display: flex;
+    gap: 10px;
+}
+
+.categoriaItem{
+    padding: 5px;
+    background-color: hsl(0, 0%, 50%, 0.1);
+    font-size: 12px;
+}
+.infoDetail, .areaAnoENota{
+    gap: 10px;
+}
+.poster{
+    max-width: 320px;
+    min-height: 250px !important;
+}
+@media (max-width:760px){
+    .trailerArea{
+        width: 100%;
+    }
+    .poster{
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,74 @@
+.movieRow {
+    margin-bottom: 30px;
+}
+
+.movieRow h2 {
+    margin: 0px 0px 0px 30px;
+}
+
+.movieRow__listArea {
+    overflow-x: hidden;
+    padding-left: 30px;
+}
+
+.movieRow__list {
+    display: inline-flex;
+    transition: all ease 0.5s;
+}
+
+.movieRow__left, .movieRow__right{
+    width: 70px !important;
+    height: 225px;
+    cursor: pointer;
+}
+
+.carousel-inner{
+    width: 90% !important;
+    margin: 0 auto !important;
+}
+
+.infoArea{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: inherit;
+    width: inherit;
+    font-size: 12px;
+}
+.areaInfo{
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 80px;
+    width: inherit;
+    background-color: hsl(0, 0%, 0%, 0.7);
+    padding: 8px;
+    transition: all linear 0.15s;
+
+}
+
+.infoArea:hover .areaInfo{
+    visibility: visible;
+}
+.average_infoArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:760px){
+    .movieRow__right,
+    .movieRow__left{
+        opacity: 1;
+    }
+    
+}
+
+.tituloCarrossel{
+    text-align: center !important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 300 !important;
+    font-size: 2rem;
+}
