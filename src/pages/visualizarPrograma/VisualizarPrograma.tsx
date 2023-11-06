@@ -46,7 +46,11 @@ function VisualizarPrograma() {
         {programa ? (
           <div className='d-flex flex-column'>
             <div className='cardArea d-flex flex-column flex-md-row'>
-              <img className='poster' src={`https://image.tmdb.org/t/p/w500${programa.poster_path}`} alt={programa.name} />
+              <img
+                className='poster'
+                src={`https://image.tmdb.org/t/p/w500${programa.poster_path}`}
+                alt={programa.name}
+              />
               <div className='d-flex flex-column infoDetail'>
                 <h3>{programa.title}</h3>
                 <div className='d-flex align-items-center areaAnoENota'>
@@ -78,7 +82,12 @@ function VisualizarPrograma() {
           </div>
         ) : (
           <div className='carregandoCardArea'>
-            <Skeleton variant='rounded' height={'450px'} width={'320px'} sx={{ bgcolor: 'grey.900' }} />
+            <Skeleton
+              variant='rounded'
+              height={'450px'}
+              width={window.innerWidth > 1000 ? '320px' : '100%'}
+              sx={{ bgcolor: 'grey.900' }}
+            />
             <Skeleton variant='rounded' height={'450px'} width={'100%'} sx={{ bgcolor: 'grey.900' }} />
           </div>
         )}

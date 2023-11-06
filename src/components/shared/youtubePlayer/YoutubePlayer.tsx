@@ -3,7 +3,7 @@ import Video from '../../../types/Video';
 
 function YoutubePlayer({ video }: { video: Video }) {
   const opts: YouTubeProps['opts'] = {
-    height: '220px',
+    height: '260px',
     width: '100%',
     playerVars: {
       autoplay: 1,

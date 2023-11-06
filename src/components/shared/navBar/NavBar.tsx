@@ -1,11 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './NavBar.css';
 
 function NavBar() {
   return (
     <div className='navBarContainer p-3'>
       <div className='d-flex container mt-1'>
-        <h4 className='w-25 mb-auto'>Moura TV</h4>
+        <Link to={'/'}>
+          <h4 className='w-25 mb-auto text-light'>Moura TV</h4>
+        </Link>
         <div className='menu-area'>
           <div className='menu-items'>
             <NavLink to={'/'} className='menu-item'>

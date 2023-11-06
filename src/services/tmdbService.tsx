@@ -11,7 +11,22 @@ async function buscaFilmesPorCategoria(categoria: string) {
     throw new Error('error');
   }
 }
-
+async function buscaFilmesPorListaPaginado(lista: string, pagina: number) {
+  try {
+    const { data } = await axios.get(moviePath + lista + '?language=pt-BR&page=' + pagina);
+    return data;
+  } catch (err) {
+    throw new Error('error');
+  }
+}
+async function buscaSeriesPorListaPaginado(lista: string, pagina: number) {
+  try {
+    const { data } = await axios.get(seriesPath + lista + '?language=pt-BR&page=' + pagina);
+    return data;
+  } catch (err) {
+    throw new Error('error');
+  }
+}
 async function buscaSeriesPorCategoria(categoria: string) {
   try {
     const { data } = await axios.get(seriesPath + categoria + '?language=pt-BR&page=1');
@@ -37,4 +52,4 @@ async function buscaSeriePorId(id: string) {
     throw new Error('Não foi encontrar o filme solicitado');
   }
 }
-export { buscaSeriesPorCategoria, buscaFilmesPorCategoria, buscaFilmePorId, buscaSeriePorId };
+export { buscaSeriesPorCategoria, buscaFilmesPorCategoria, buscaFilmePorId, buscaSeriePorId, buscaFilmesPorListaPaginado, buscaSeriesPorListaPaginado };

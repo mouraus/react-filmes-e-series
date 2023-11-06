@@ -1,28 +1,29 @@
+import './Series.css';
+
 import { useEffect, useState } from 'react';
 import NavBar from '../../components/shared/navBar/NavBar';
-import './Filmes.css';
 import Filme from '../../types/Filme';
 import { useRequest } from 'ahooks';
-import { buscaFilmesPorListaPaginado } from '../../services/tmdbService';
 import ReactPaginate from 'react-paginate';
 import { Skeleton } from '@mui/material';
 import CardFilm from '../../components/shared/cardFilm/CardFilm';
+import { buscaSeriesPorListaPaginado } from '../../services/tmdbService';
 
-function Filmes() {
-  const [filmes, setFilmes] = useState<Filme[]>([]);
+function Series() {
+  const [series, setSeries] = useState<Filme[]>([]);
   const [paginaAtual, setPaginaAtual] = useState<number>(1);
 
-  const { run: bucarFilmesPaginado, loading: carregandoBuscarFilme } = useRequest(buscaFilmesPorListaPaginado, {
+  const { run: buscarSeriesPorCategoria, loading: carregandoBuscarSerie } = useRequest(buscaSeriesPorListaPaginado, {
     manual: true,
     onSuccess: (res) => {
-      setFilmes(res.results);
+      setSeries(res.results);
       setPaginaAtual(res.page);
     },
   });
 
   useEffect(() => {
-    bucarFilmesPaginado('popular', paginaAtual);
-  }, [bucarFilmesPaginado, paginaAtual]);
+    buscarSeriesPorCategoria('popular', paginaAtual);
+  }, [buscarSeriesPorCategoria, paginaAtual]);
 
   function handlePageClick(p: number) {
     setPaginaAtual(p + 1);
@@ -32,13 +33,13 @@ function Filmes() {
     <>
       <NavBar />
       <div className='container container-config'>
-        <div className='filmesArea mt-5'>
-          {!carregandoBuscarFilme ? (
-            filmes.map((p, index) => {
+        <div className='seriesArea mt-5'>
+          {!carregandoBuscarSerie ? (
+            series.map((p, index) => {
               return <CardFilm item={p} key={index} />;
             })
           ) : (
-            <Skeleton className='mt-5' variant='rounded' width={'65vw'} height={'100vh'} sx={{ bgcolor: 'grey.900' }}/>
+            <Skeleton className='mt-5' variant='rounded' width={'65vw'} height={'100vh'} sx={{ bgcolor: 'grey.900' }} />
           )}
         </div>
         <div className='d-flex mt-5'>
@@ -53,7 +54,7 @@ function Filmes() {
             pageLinkClassName='page-link'
             previousClassName='page-item'
             previousLinkClassName='page-link'
-            nextClassName='page-item bg-dark'
+            nextClassName='page-item'
             nextLinkClassName='page-link'
             breakLabel='...'
             breakClassName='page-item'
@@ -68,4 +69,4 @@ function Filmes() {
   );
 }
 
-export default Filmes;
+export default Series;

@@ -44,14 +44,14 @@ function CarrosselFilmesFiltrado() {
   }
   return (
     <>
-      <div className='d-flex justify-content-between w-50 mx-auto flex-wrap'>
+      <div className='d-flex justify-content-between w-50 mx-auto flex-md-row flex-column'>
         {categorias.map((c, index) => (
           <div
             key={index}
             className={
               filtroSelecionado != c.categoria
-                ? 'filtroDisable d-flex flex-column justify-content-center align-items-center categoria my-5'
-                : 'd-flex flex-column justify-content-center align-items-center categoria my-5'
+                ? 'filtroDisable d-flex flex-column justify-content-center align-items-center categoria my-5 mx-auto'
+                : 'd-flex flex-column justify-content-center align-items-center categoria my-5 mx-auto'
             }
             style={{ gap: '10px' }}
             onClick={() => handleHabilitarCategoria(index)}
