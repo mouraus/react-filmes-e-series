@@ -2,8 +2,8 @@
     min-height: 80vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
 }
 .container-config{
     display: flex !important;

@@ -41,7 +41,7 @@ async function buscaFilmePorId(id: string) {
     const { data } = await axios.get(moviePath + id + '?append_to_response=videos,images&language=pt-br');
     return data;
   } catch (err) {
-    throw new Error('Não foi encontrar o filme solicitado');
+    throw new Error('Não foi possível encontrar o filme solicitado');
   }
 }
 async function buscaSeriePorId(id: string) {
@@ -49,7 +49,25 @@ async function buscaSeriePorId(id: string) {
     const { data } = await axios.get(seriesPath + id + '?append_to_response=videos,images&language=pt-br');
     return data;
   } catch (err) {
-    throw new Error('Não foi encontrar o filme solicitado');
+    throw new Error('Não foi possível encontrar o filme solicitado');
   }
 }
-export { buscaSeriesPorCategoria, buscaFilmesPorCategoria, buscaFilmePorId, buscaSeriePorId, buscaFilmesPorListaPaginado, buscaSeriesPorListaPaginado };
+
+async function buscarFilmesPaginadoPorCategoria(categoriasIds: string, pagina: number) {
+  try{
+    const { data } = await axios.get(`/3/discover/movie?include_adult=false&include_video=false&language=pt-br&page=${pagina}&sort_by=popularity.desc&with_genres=${categoriasIds}`);
+    return data;
+  }catch(err){
+    throw new Error('Não foi possível encontrar o filme solicitado');
+  }
+}
+
+async function buscarProgramasPorTermoDeBusca(query:string, pagina: number) {
+  try{
+    const { data } = await axios.get(`/3/search/multi?query=${query}&include_adult=false&language=pt-br&page=${pagina}`);
+    return data;
+  }catch(err){
+    throw new Error('Não foi possível encontrar o filme solicitado');
+  }
+}
+export { buscaSeriesPorCategoria, buscaFilmesPorCategoria, buscaFilmePorId, buscaSeriePorId, buscaFilmesPorListaPaginado, buscaSeriesPorListaPaginado, buscarFilmesPaginadoPorCategoria, buscarProgramasPorTermoDeBusca };

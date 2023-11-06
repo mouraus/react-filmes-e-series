@@ -3,6 +3,7 @@ import { buscaCategoriasPorTipo } from '../../../services/categoriaService';
 import { useState } from 'react';
 import Categoria from '../../../types/Categoria';
 import './FilterCategorias.css';
+import { Link } from 'react-router-dom';
 
 function FilterCategorias() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
@@ -20,7 +21,7 @@ function FilterCategorias() {
         <span className='tituloCategoriasFilter mb-3'>NAVEGUE PELA CATEGORIA QUE VOCÊ MAIS GOSTA!</span>
         <div className='categoriaFilterContainer mb-5'>
           {categorias.map((c, index) => {
-            return <a className='categoriaFilter' key={index}>{c.name}</a>;
+            return <Link to={`/f?categoriaId=${c.id}&categoria=${c.name}`} className='categoriaFilter' key={index}>{c.name}</Link>;
           })}
         </div>
       </div>

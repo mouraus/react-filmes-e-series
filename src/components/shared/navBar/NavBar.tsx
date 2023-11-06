@@ -1,7 +1,11 @@
 import { Link, NavLink } from 'react-router-dom';
 import './NavBar.css';
+import SearchInput from '../searchInput/SearchInput';
+import { useState } from 'react';
 
 function NavBar() {
+  const [mostrarInputSearch, setMostrarInputSearch] = useState<boolean>(false);
+
   return (
     <div className='navBarContainer p-3'>
       <div className='d-flex container mt-1'>
@@ -24,7 +28,8 @@ function NavBar() {
             </NavLink>
           </div>
           <div className='searchArea'>
-            <i className='fa-solid fa-magnifying-glass'></i>
+            <i className={mostrarInputSearch ? 'd-none' :'fa-solid fa-magnifying-glass'}  onClick={() => setMostrarInputSearch(true)}></i>
+            <SearchInput setAberto={setMostrarInputSearch} aberto={mostrarInputSearch}/>
           </div>
         </div>
       </div>
