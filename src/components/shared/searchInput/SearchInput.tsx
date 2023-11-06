@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import './SearchInput.css';
 import { useNavigate } from 'react-router-dom';
 
-function SearchInput({aberto, setAberto}:{aberto: boolean, setAberto:any}) {
+function SearchInput({aberto, setAberto}:{aberto: boolean, setAberto:React.Dispatch<boolean>}) {
 
   const [searchValue, setSearchValue] = useState<string>('');
   const navigate = useNavigate();
@@ -12,10 +11,10 @@ function SearchInput({aberto, setAberto}:{aberto: boolean, setAberto:any}) {
     setSearchValue('');
   }, [aberto]);
 
-  function procurarProgramas(event: any){
+  function procurarProgramas(event: React.MouseEvent | FormEvent<HTMLFormElement>){
     event.preventDefault();
-    navigate('/procurar?termoDeBusca=' + searchValue);
     setAberto(false);
+    navigate('/procurar?termoDeBusca=' + searchValue);
   }
 
   return (

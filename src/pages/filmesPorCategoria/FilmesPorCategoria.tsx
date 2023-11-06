@@ -3,7 +3,7 @@ import NavBar from '../../components/shared/navBar/NavBar';
 import { useRequest } from 'ahooks';
 import { buscarFilmesPaginadoPorCategoria } from '../../services/tmdbService';
 import { useEffect, useState } from 'react';
-import Filme from '../../types/Filme';
+import Programa from '../../types/Programa';
 import ReactPaginate from 'react-paginate';
 import { Skeleton } from '@mui/material';
 import CardFilm from '../../components/shared/cardFilm/CardFilm';
@@ -23,7 +23,7 @@ function FilmesPorCategoria() {
     },
   );
 
-  const [filmes, setFilmes] = useState<Filme[]>([]);
+  const [filmes, setFilmes] = useState<Programa[]>([]);
 
   const [paginaAtual, setPaginaAtual] = useState<number>(1);
   const [qtdTotalDePaginas, setQtdTotalDePaginas] = useState<number>(0);
@@ -58,7 +58,7 @@ function FilmesPorCategoria() {
               return <CardFilm item={p} key={index} />;
             })
           ) : (
-            <Skeleton className='mt-5' variant='rounded' width={'65vw'} height={'100vh'} sx={{ bgcolor: 'grey.900' }} />
+            <Skeleton variant='rounded' width={'80vw'} height={'100vh'} sx={{ bgcolor: 'grey.900' }} />
           )}
         </div>
         <div className='d-flex mt-5'>

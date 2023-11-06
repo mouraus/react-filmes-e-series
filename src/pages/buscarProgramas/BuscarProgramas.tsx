@@ -3,18 +3,17 @@ import NavBar from '../../components/shared/navBar/NavBar';
 import { useRequest } from 'ahooks';
 import { buscarProgramasPorTermoDeBusca } from '../../services/tmdbService';
 import { useEffect, useState } from 'react';
-import Filme from '../../types/Filme';
+import Programa from '../../types/Programa';
 import ReactPaginate from 'react-paginate';
 import { Skeleton } from '@mui/material';
 import CardFilm from '../../components/shared/cardFilm/CardFilm';
 
 function BuscarProgramas() {
   const [searchParams] = useSearchParams();
+  const [filmes, setFilmes] = useState<Programa[]>([]);
+  const [paginaAtual, setPaginaAtual] = useState<number>(1);
+  const [qtdTotalDePaginas, setQtdTotalDePaginas] = useState<number>(0);
 
-  function handleRemoverPessoasDaResposta(programas: Filme[]){
-    const arr = programas.filter((c) =>( c.media_type != 'person' && c.poster_path));
-    setFilmes(arr);
-  }
   const { run: buscarProgramas, loading: carregandoBuscarFilmes } = useRequest(
     buscarProgramasPorTermoDeBusca,
     {
@@ -25,15 +24,15 @@ function BuscarProgramas() {
       },
     },
   );
-
-  const [filmes, setFilmes] = useState<Filme[]>([]);
-
-  const [paginaAtual, setPaginaAtual] = useState<number>(1);
-  const [qtdTotalDePaginas, setQtdTotalDePaginas] = useState<number>(0);
-
+  
   useEffect(() => {
     buscarProgramas(searchParams.get('termoDeBusca')!, paginaAtual);
   }, [buscarProgramas, paginaAtual, searchParams]);
+
+  function handleRemoverPessoasDaResposta(programas: Programa[]){
+    const arr = programas.filter((c) =>( c.media_type != 'person' && c.poster_path));
+    setFilmes(arr);
+  }
 
   function handlePageClick(p: number) {
     setPaginaAtual(p + 1);

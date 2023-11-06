@@ -2,15 +2,15 @@ import './Home.css';
 import { buscaFilmesPorCategoria } from '../../services/tmdbService';
 import { useRequest } from 'ahooks';
 import { useState } from 'react';
-import Filme from '../../types/Filme';
+import Programa from '../../types/Programa';
 import Header from '../../components/home/header/Header';
 import CarrosselFilmesFiltrado from '../../components/home/carrosselFilmesFiltrado/CarrosselFilmesFiltrado';
 import CarrosselFilmes from '../../components/home/carrosselFilmes/CarrosselFilmes';
 import { buscaSeriesPorCategoria } from '../../services/tmdbService';
 import FilterCategorias from '../../components/home/filterCategorias/FilterCategorias';
 function Home() {
-  const [filmesEmCartazList, setFilmesEmCartazList] = useState<Filme[]>([]);
-  const [series, setSeries] = useState<Filme[]>([]);
+  const [filmesEmCartazList, setFilmesEmCartazList] = useState<Programa[]>([]);
+  const [series, setSeries] = useState<Programa[]>([]);
 
   useRequest(buscaFilmesPorCategoria, {
     manual: false,

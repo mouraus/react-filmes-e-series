@@ -2,14 +2,14 @@ import { Skeleton } from '@mui/material';
 import { headerStyle } from './Header.style';
 import { retornaImagem } from '../../../services/imgService';
 import { useEffect, useState } from 'react';
-import Filme from '../../../types/Filme';
+import Programa from '../../../types/Programa';
 import NavBar from '../../shared/navBar/NavBar';
 import { Link } from 'react-router-dom';
 
-function Header({ filmesList }: { filmesList: Filme[] }) {
-  const [filmeEmDestaque, setFilmeEmDestaque] = useState<Filme>();
+function Header({ filmesList }: { filmesList: Programa[] }) {
+  const [filmeEmDestaque, setFilmeEmDestaque] = useState<Programa>();
 
-  function escolheFilme(filmesList: Filme[]) {
+  function escolheFilme(filmesList: Programa[]) {
     let indexFilmeAleatorio = parseInt((Math.random() * 20).toFixed());
 
     while (indexFilmeAleatorio > filmesList.length - 1) {
@@ -24,7 +24,7 @@ function Header({ filmesList }: { filmesList: Filme[] }) {
 
   return (
     <>
-      {!filmeEmDestaque ? (
+      {filmeEmDestaque == undefined ? (
         <Skeleton variant='rectangular' width={'100%'} height={'60vh'} sx={{ bgcolor: 'grey.900' }} />
       ) : (
         <div
@@ -40,7 +40,7 @@ function Header({ filmesList }: { filmesList: Filme[] }) {
                 <span>
                   {filmeEmDestaque.vote_average.toPrecision(2) +
                     '/10 - ' +
-                    filmeEmDestaque.release_date.substring(0, 4)}
+                    filmeEmDestaque.release_date!.substring(0, 4)}
                 </span>
               </div>
             </div>

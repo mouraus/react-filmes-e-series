@@ -2,7 +2,7 @@ import './Series.css';
 
 import { useEffect, useState } from 'react';
 import NavBar from '../../components/shared/navBar/NavBar';
-import Filme from '../../types/Filme';
+import Programa from '../../types/Programa';
 import { useRequest } from 'ahooks';
 import ReactPaginate from 'react-paginate';
 import { Skeleton } from '@mui/material';
@@ -10,13 +10,13 @@ import CardFilm from '../../components/shared/cardFilm/CardFilm';
 import { buscaSeriesPorListaPaginado } from '../../services/tmdbService';
 
 function Series() {
-  const [series, setSeries] = useState<Filme[]>([]);
+  const [series, setSeries] = useState<Programa[]>([]);
   const [paginaAtual, setPaginaAtual] = useState<number>(1);
 
   const { run: buscarSeriesPorCategoria, loading: carregandoBuscarSerie } = useRequest(buscaSeriesPorListaPaginado, {
     manual: true,
     onSuccess: (res) => {
-      setSeries(res.results);
+      handleRemoverSeriesSemCapa(res.results);
       setPaginaAtual(res.page);
     },
   });
@@ -25,6 +25,10 @@ function Series() {
     buscarSeriesPorCategoria('popular', paginaAtual);
   }, [buscarSeriesPorCategoria, paginaAtual]);
 
+  function handleRemoverSeriesSemCapa(series: Programa[]) {
+    const seriesFiltrado = series.filter((f) => f.poster_path);
+    setSeries(seriesFiltrado);
+  }
   function handlePageClick(p: number) {
     setPaginaAtual(p + 1);
   }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import Filme from '../../../types/Filme';
+import Programa from '../../../types/Programa';
 import './cardFilm.css';
-function CardFilm({item}:{item:Filme}) {
+function CardFilm({item}:{item:Programa}) {
   return (
     <>
       <Link

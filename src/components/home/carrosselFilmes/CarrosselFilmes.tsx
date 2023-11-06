@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import Filme from '../../../types/Filme';
+import Programa from '../../../types/Programa';
 import './CarrosselFilmes.css';
 import { Skeleton } from '@mui/material';
 import CardFilm from '../../shared/cardFilm/CardFilm';
 
-function CarrosselFilmes({ filmsList, titulo, width }: { filmsList: Filme[]; titulo: string; width: number }) {
+function CarrosselFilmes({ filmsList, titulo, width }: { filmsList: Programa[]; titulo: string; width: number }) {
   const [scrollX, setScrollX] = useState(-30);
 
   useEffect(() => {

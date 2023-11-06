@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams } from 'react-router-dom';
 import NavBar from '../../components/shared/navBar/NavBar';
 import { useEffect, useState } from 'react';
@@ -8,11 +7,12 @@ import Categoria from '../../types/Categoria';
 import { Skeleton } from '@mui/material';
 import './VisualizarPrograma.css';
 import YoutubePlayer from '../../components/shared/youtubePlayer/YoutubePlayer';
+import Programa from '../../types/Programa';
 
 function VisualizarPrograma() {
   const { tipo, id } = useParams<string>();
 
-  const [programa, setPrograma] = useState<any>();
+  const [programa, setPrograma] = useState<Programa>();
   const [generos, setGeneros] = useState<Categoria[]>();
 
   const { run: buscarFilmePorId } = useRequest(buscaFilmePorId, {
@@ -32,6 +32,7 @@ function VisualizarPrograma() {
       setGeneros(result.genres);
     },
   });
+
   useEffect(() => {
     if (tipo == 'movie') {
       buscarFilmePorId(id!);
@@ -39,6 +40,7 @@ function VisualizarPrograma() {
       buscarSeriePorId(id!);
     }
   }, [buscarFilmePorId, buscarSeriePorId, id, tipo]);
+  
   return (
     <>
       <NavBar />
@@ -61,7 +63,7 @@ function VisualizarPrograma() {
                   <span className='programaAno'>
                     {programa.release_date
                       ? programa.release_date.substring(0, 4)
-                      : programa.first_air_date.substring(0, 4)}
+                      : programa.first_air_date!.substring(0, 4)}
                   </span>
                 </div>
                 <div className='categoriaProgramaArea'>

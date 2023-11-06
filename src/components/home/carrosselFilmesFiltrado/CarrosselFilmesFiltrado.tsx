@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Filme from '../../../types/Filme';
+import Programa from '../../../types/Programa';
 import { buscaFilmesPorCategoria } from '../../../services/tmdbService';
 import { useRequest } from 'ahooks';
 import CarrosselFilmes from '../carrosselFilmes/CarrosselFilmes';
@@ -7,7 +7,7 @@ import './CarrosselFilmesFiltrado.css';
 import { Skeleton } from '@mui/material';
 
 function CarrosselFilmesFiltrado() {
-  const [filmesSelecionados, setFilmesSelecionados] = useState<Filme[]>([]);
+  const [filmesSelecionados, setFilmesSelecionados] = useState<Programa[]>([]);
   const [filtroSelecionado, setFiltroSelecionado] = useState<string>('now_playing');
 
   const categorias = [
